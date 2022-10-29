@@ -17,7 +17,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends StateMVC<HomePage> with TickerProviderStateMixin {
   final HomePageController _con = HomePageController.con;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
   @override
   void initState() {
     super.initState();
@@ -47,8 +46,6 @@ class _HomePageState extends StateMVC<HomePage> with TickerProviderStateMixin {
             icon: const Icon(Icons.list),
           ),
         ),
-        //El widget de Maps solo debe ir dentro de widget con las dimensiones definidas
-        // Puede ir dentro de un container, sizeBox o directamente Body de scaffold.
         body: _tabBarView(tabController),
         floatingActionButton: CustomExpandableButtonComponent(
           distance: 70,
@@ -66,7 +63,8 @@ class _HomePageState extends StateMVC<HomePage> with TickerProviderStateMixin {
         drawer: NavigationDrawer(
           lot: _con.lot,
           onPressed: _closeDrawer,
-        ));
+        ),
+        );
   }
 
   TabBarView _tabBarView(TabController tabController) {
@@ -74,27 +72,13 @@ class _HomePageState extends StateMVC<HomePage> with TickerProviderStateMixin {
         physics: const NeverScrollableScrollPhysics(),
         controller: tabController,
         children: [
-          MapPageComponent(points: _con.points, lots: _con.lot,),
-          // Text('Rutas'),
+          MapPageComponent(
+            points: _con.points,
+            lots: _con.lot,
+          ),
           Text('Rutas'),
           Text('Favoritos'),
         ]);
   }
 }
-
-
-  // Wrap(
-  //   runSpacing: 10,
-  //   children: [
-  //     ListTile(
-  //       leading: const Icon(Icons.route_outlined),
-  //       title: const Text('Caminos'),
-  //       onTap: () {
-  //         Navigator.pop(context);
-  //         Navigator.of(context).pushReplacement(MaterialPageRoute(
-  //             builder: (context) => const LoadTrackPage()));
-  //       },
-  //     )
-  //   ],
-  // );
 

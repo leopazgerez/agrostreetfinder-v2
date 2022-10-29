@@ -36,6 +36,11 @@ class DummyData implements IDataAccess{
       LotModel(id: 10, name: 'A10', crop: 'Maiz'),
       LotModel(id: 11, name: 'A11', crop: 'Maiz'),
       LotModel(id: 12, name: 'A12', crop: 'Maiz'),
+      LotModel(id: 13, name: 'A13', crop: 'Maiz'),
+      LotModel(id: 14, name: 'A14', crop: 'Maiz'),
+      LotModel(id: 15, name: 'A15', crop: 'Maiz'),
+      LotModel(id: 16, name: 'A16', crop: 'Maiz'),
+      LotModel(id: 17, name: 'A17', crop: 'Maiz'),
     ];
   }
 
@@ -50,6 +55,15 @@ class DummyData implements IDataAccess{
       PointModel(id: 6,latitude: -25.4176122, longitude: -63.842231),
       PointModel(id: 7,latitude: -25.4183985, longitude: -63.8328069),
       PointModel(id: 8,latitude: -25.4251991, longitude: -63.8359817),
+      PointModel(id: 9,latitude: -25.4216254, longitude: -63.8293666),
+      PointModel(id: 10,latitude: -25.4191173, longitude: -63.8302906),
+      PointModel(id: 11,latitude: -25.4208852, longitude: -63.8219143),
+      PointModel(id: 12,latitude: -25.4174295, longitude: -63.827233),
+      PointModel(id: 13,latitude: -25.413372, longitude: -63.829874),
+      PointModel(id: 14,latitude: -25.4120619, longitude: -63.83551),
+      PointModel(id: 15,latitude: -25.4098289, longitude: -63.8432239),
+      PointModel(id: 16,latitude: -25.4061193, longitude: -63.85371),
+      PointModel(id: 17,latitude: -25.4087073, longitude: -63.8578195),
     ];
   }
 

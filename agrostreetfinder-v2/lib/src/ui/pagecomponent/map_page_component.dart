@@ -1,8 +1,6 @@
 import 'dart:async';
-
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/material.dart';
-
 import '../../models/lot_model.dart';
 import '../../models/point_model.dart';
 
@@ -16,6 +14,7 @@ class MapPageComponent extends StatefulWidget {
 }
 
 class _MapPageComponentState extends State<MapPageComponent> {
+
   Completer<GoogleMapController> controller = Completer();
   static const CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(-25.4401138, -63.8570852),
@@ -23,14 +22,6 @@ class _MapPageComponentState extends State<MapPageComponent> {
   );
   final Set<Marker> _markers = {};
   // final Set<Polyline> _polyline = {};
-  List<LatLng> latLen = [
-    LatLng(19.0759837, 72.8776559),
-    LatLng(28.679079, 77.069710),
-    LatLng(26.850000, 80.949997),
-    LatLng(24.879999, 74.629997),
-    LatLng(16.166700, 74.833298),
-    LatLng(12.971599, 77.594563),
-  ];
   @override
   void initState() {
     // TODO: implement initState
