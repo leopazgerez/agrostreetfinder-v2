@@ -36,12 +36,12 @@ class HomePageController extends ControllerMVC {
     );
   }
   List<FieldModel> fields = [];
-  List<LotModel> lot = [];
+  List<LotModel> lots = [];
   List<PointModel> points = [];
 
   void initPage(){
     fields = dataManager.getFieldModel();
-    lot = dataManager.getLotModel();
+    lots = dataManager.getLotModel();
     points = dataManager.getPointModel();
   }
 }

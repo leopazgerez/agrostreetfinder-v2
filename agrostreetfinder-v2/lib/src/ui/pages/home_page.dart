@@ -61,7 +61,7 @@ class _HomePageState extends StateMVC<HomePage> with TickerProviderStateMixin {
           ],
         ),
         drawer: NavigationDrawer(
-          lot: _con.lot,
+          lot: _con.lots,
           onPressed: _closeDrawer,
         ),
         );
@@ -73,8 +73,8 @@ class _HomePageState extends StateMVC<HomePage> with TickerProviderStateMixin {
         controller: tabController,
         children: [
           MapPageComponent(
-            points: _con.points,
-            lots: _con.lot,
+            // points: _con.points,
+            lots: _con.lots,
           ),
           Text('Rutas'),
           Text('Favoritos'),
