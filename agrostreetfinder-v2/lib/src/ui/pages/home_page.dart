@@ -73,10 +73,14 @@ class _HomePageState extends StateMVC<HomePage> with TickerProviderStateMixin {
         controller: tabController,
         children: [
           MapPageComponent(
-            // points: _con.points,
+            points: _con.points,
             lots: _con.lots,
           ),
-          Text('Rutas'),
+          Text('Favoritos'),
+          // MapPageComponent(
+          //   points: _con.points,
+          //   // lots: _con.lots,
+          // ),
           Text('Favoritos'),
         ]);
   }

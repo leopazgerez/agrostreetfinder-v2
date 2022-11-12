@@ -1,11 +1,11 @@
 class FieldModel {
   int id;
 
-  double? hectareas;
+  double? hectares;
   String? typeProduction;
   String? crop;
   String? typeRodeo;
 
   FieldModel(
-      this.hectareas, this.typeProduction, this.crop, this.id, this.typeRodeo);
+      this.hectares, this.typeProduction, this.crop, this.id, this.typeRodeo);
 }
