@@ -4,9 +4,9 @@ import '../../models/lot_model.dart';
 import '../../models/point_model.dart';
 // ignore_for_file: must_be_immutable, non_constant_identifier_names
 class MapPageComponent extends StatefulWidget {
-  late List<PointModel>? points;
-  late List<LotModel> lots;
-   MapPageComponent({Key? key, this.points, required this.lots})
+  final List<PointModel>? points;
+  final List<LotModel>? lots;
+   const MapPageComponent({Key? key, this.points, this.lots})
       : super(key: key);
 
   @override
@@ -19,55 +19,29 @@ class _MapPageComponentState extends State<MapPageComponent> {
     zoom: 13.5,
     // 14.4746,
   );
-  final Set<Marker> _markers = {};
-  final List<LatLng> a1 = [
-    const LatLng(-25.426389, -63.857672),
-    const LatLng(-25.418478, -63.855872),
-    const LatLng(-25.419983,-63.847344),
-    const LatLng(-25.427906, -63.848911),
-  ];
-  final List<LatLng> a2 = [
-    // const LatLng(-25.419825, -63.847322),
-    // const LatLng(-25.410811, -63.845403),
-    // const LatLng(-25.409275, -63.853836),
-    // const LatLng(-25.418422, -63.855842),
-  ];
-  final List<LatLng> a3 = [
-    // const LatLng(-25.419903, -63.846819),
-    // const LatLng(-25.410989, -63.844956),
-    // const LatLng(-25.412194,  -63.837544),
-    const LatLng(-25.421181,  -63.839517),
-  ];
-  final List<LatLng> a4 = [
-    // const LatLng(-25.428331, -63.846767),
-    // const LatLng(-25.428564,  -63.844933),
-    // const LatLng(-25.427411,  -63.843322),
-    // const LatLng(-25.426481,  -63.841939),
-    // const LatLng(-25.426531,  -63.840678),
-    // const LatLng(-25.421436,  -63.839553),
-    // const LatLng(-25.420131,  -63.846911),
-    // const LatLng(-25.423567,  -63.847692),
-    // const LatLng(-25.427831, -63.848669),
-  ];
-  late Set<Polygon> _polygon;
+  late Set<Marker> _markers = {};
+  late Set<Polygon> _polygon = {};
 
 
   @override
   void initState() {
     super.initState();
-    for (int points = 0; points < widget.points!.length; points++) {
-      _markers.add(Marker(
-          markerId: MarkerId(points.toString()),
-          position: LatLng(widget.points![points].latitude,
-              widget.points![points].longitude),
-          icon: BitmapDescriptor.defaultMarkerWithHue(
-              BitmapDescriptor.hueRose),
-          onTap: () {}));
-    }
-    for (int lot = 0; lot < widget.lots!.length; lot++) {
-      _polygon = setPolygon(setListLtnLng(widget.lots[lot]));
-      print('Lote con ${_polygon.length} puntos');
-    }
+    // for (int points = 0; points < widget.points!.length; points++) {
+    //   _markers.add(Marker(
+    //       markerId: MarkerId(points.toString()),
+    //       position: LatLng(widget.points![points].latitude,
+    //           widget.points![points].longitude),
+    //       icon: BitmapDescriptor.defaultMarkerWithHue(
+    //           BitmapDescriptor.hueRose),
+    //       onTap: () {}));
+    // }
+    _markers = _setMarker(widget.points);
+    _polygon = _setLot(widget.lots);
+    print('La cantidad de poligonos es ${_polygon.length}');
+      // for (int lot = 0; lot < widget.lots!.length; lot++) {
+      //   _polygon = setPolygon(setListLatLng(widget.lots![lot]));
+      //   print('Lote ${widget.lots![lot].name} con ${_polygon.length} puntos');
+      // }
 
     // _polygon.add(Polygon(polygonId: const PolygonId('value'),
     // points: a1,
@@ -94,7 +68,34 @@ class _MapPageComponentState extends State<MapPageComponent> {
     //   strokeColor: Colors.green
     // ));
   }
-  List<LatLng> setListLtnLng(LotModel lot){
+  Set<Marker> _setMarker(List<PointModel>? points){
+    Set<Marker> markers = {};
+    if(points != null){
+      for (int point = 0; point < points.length; point++) {
+        markers.add(Marker(
+            markerId: MarkerId(points.toString()),
+            position: LatLng(points[point].latitude,
+               points[point].longitude),
+            icon: BitmapDescriptor.defaultMarkerWithHue(
+                BitmapDescriptor.hueRose),
+            onTap: () {}));
+      }
+    }
+    return markers;
+  }
+
+  Set<Polygon> _setLot(List<LotModel>? lots){
+    Set<Polygon> polygon = {};
+    if(lots != null) {
+        for (int lot = 0; lot < lots.length; lot++) {
+          polygon = setPolygon(setListLatLng(lots[lot]));
+          print('Lote ${lots[lot].name} con ${polygon.length} puntos');
+        }
+    }
+    return polygon;
+  }
+
+  List<LatLng> setListLatLng(LotModel lot){
     List<LatLng>listLotPoints = [];
     for (int points = 0 ; points < lot.points.length ; points++){
       listLotPoints.add(LatLng(lot.points[points].latitude, lot.points[points].longitude));
@@ -102,15 +103,16 @@ class _MapPageComponentState extends State<MapPageComponent> {
     return listLotPoints;
   }
 
-  Set<Polygon> setPolygon(List<LatLng> listLot){
+  Set<Polygon> setPolygon(List<LatLng> listLotPoints){
     Set<Polygon> polygon = {};
-    for (int lot = 0 ; lot < listLot.length; lot++){
-      polygon.add((Polygon(polygonId: PolygonId(listLot[lot].toString()),
-          points: listLot,
+    for (int lot = 0 ; lot < listLotPoints.length; lot++){
+      polygon.add((Polygon(polygonId: PolygonId(listLotPoints[lot].toString()),
+          points: listLotPoints,
           fillColor: Colors.green.shade200,
           strokeWidth: 3,
           strokeColor: Colors.green
       )));
+      // print(polygon.length);
     }
     return polygon;
   }
@@ -118,15 +120,27 @@ class _MapPageComponentState extends State<MapPageComponent> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: GoogleMap(
-        myLocationButtonEnabled: true,
-        markers: _markers,
-        mapType: MapType.hybrid,
-        zoomControlsEnabled: false,
-        initialCameraPosition: _kGooglePlex,
-        polygons: _polygon,
-      ),
-    );
+    if (_polygon.isNotEmpty) {
+      return SizedBox(
+        child: GoogleMap(
+          myLocationButtonEnabled: true,
+          // markers: _markers,
+          mapType: MapType.hybrid,
+          zoomControlsEnabled: false,
+          initialCameraPosition: _kGooglePlex,
+          polygons: _polygon,
+        ),
+      );
+    } else {
+      return SizedBox(
+        child: GoogleMap(
+          myLocationButtonEnabled: true,
+          markers: _markers,
+          mapType: MapType.hybrid,
+          zoomControlsEnabled: false,
+          initialCameraPosition: _kGooglePlex,
+        ),
+      );
+    }
   }
 }

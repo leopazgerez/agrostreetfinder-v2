@@ -55,6 +55,20 @@ class DummyData implements IDataAccess{
         PointModel(id: 20,latitude: -25.409275, longitude: -63.853836),
         PointModel(id: 21,latitude: -25.418422, longitude: -63.855842),
       ]),
+      LotModel(id: 5, name: 'A5', crop: 'Algodon', points: [
+        PointModel(id: 22,latitude: -25.418519, longitude: -63.85635),
+        PointModel(id: 23,latitude: -25.421889, longitude: -63.857025),
+        PointModel(id: 24,latitude: -25.420636, longitude: -63.864058),
+        PointModel(id: 25,latitude: -25.418978, longitude: -63.865294),
+        PointModel(id: 26,latitude: -25.416969, longitude: -63.8649),
+      ]),
+      LotModel(id: 6, name: 'A6', crop: 'Algodon', points: [
+        PointModel(id: 27,latitude: -25.416761, longitude: -63.864828),
+        PointModel(id: 28,latitude: -25.407797, longitude: -63.862939),
+        PointModel(id: 29,latitude: -25.409161, longitude: -63.854372),
+        PointModel(id: 30,latitude: -25.409839, longitude: -63.854297),
+        PointModel(id: 31,latitude: -25.418308, longitude: -63.856183),
+      ]),
     ];
   }
 
