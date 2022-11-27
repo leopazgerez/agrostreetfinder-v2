@@ -1,5 +1,7 @@
+import 'package:agrostreetfinder/src/models/crop_model.dart';
 import 'package:agrostreetfinder/src/models/field_model.dart';
 import 'package:agrostreetfinder/src/models/lot_model.dart';
+import 'package:agrostreetfinder/src/models/type_production_agricola_model.dart';
 
 import '../interfaces/data_access.dart';
 import '../models/point_model.dart';
@@ -13,12 +15,12 @@ class DummyData implements IDataAccess{
   @override
   List<FieldModel> getFieldModel() {
     return [
-      FieldModel(1000,'Agricola', 'Soja', 1, ''),
-      FieldModel(1000,'Agricola', 'Poroto', 2, ''),
-      FieldModel(1000,'Agricola', 'Garbanzo', 3, ''),
-      FieldModel(1000,'Agricola', 'Maiz', 4, ''),
-      FieldModel(1000,'Agricola', 'Sorgo', 5, ''),
-      FieldModel(1000,'Agricola', 'Alfalfa', 6, ''),
+      FieldModel(1000,TypeProductionAgricola('Agricola'), CropModel(name: 'Soja'), 1, ''),
+      FieldModel(1000,TypeProductionAgricola('Agricola'), CropModel(name: 'Poroto'), 2, ''),
+      FieldModel(1000,TypeProductionAgricola('Agricola'), CropModel(name: 'Garbanzo'), 3, ''),
+      FieldModel(1000,TypeProductionAgricola('Agricola'), CropModel(name: 'Maiz'), 4, ''),
+      FieldModel(1000,TypeProductionAgricola('Agricola'), CropModel(name: 'Sorgo'), 5, ''),
+      FieldModel(1000,TypeProductionAgricola('Agricola'),CropModel(name: 'Alfalfa'), 6, ''),
     ];
   }
 

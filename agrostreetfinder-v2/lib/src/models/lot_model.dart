@@ -1,10 +1,11 @@
 import 'package:agrostreetfinder/src/models/point_model.dart';
+import 'package:agrostreetfinder/src/models/type_production_model.dart';
 
 class LotModel {
   int id;
   String name;
   double? hectares;
-  String? typeProduction;
+  TypeProductionModel? typeProduction;
   String? crop;
   String? typeRodeo;
   List<PointModel> points;
